@@ -1,50 +1,74 @@
 import React from 'react';
 import { Button, Card, Form, Input, Space } from 'antd';
-const App = () => (
-  <>
-    <Card
-      style={{
-        maxWidth: "800px",
-        marginLeft: "250px",
-        border: "2px solid black",
-        background: "black"
-      }}>
-      <Space
-        style={{
-          fontSize: "40px",
-          color: "white",
-          margin: "10px",
-          marginLeft: "250px"
-        }}>
-        Login Page</Space>
-      <Form labelCol={{
-        span: 8,
-      }}
-        style={{
-          maxWidth: "600px",
-          textAlign: "center"
-        }}>
-        <Form.Item
-          label="Email"
-          name="email"
-        >
-          <Input />
-        </Form.Item>
+import { useNavigate } from 'react-router-dom';
 
-        <Form.Item
-          label="Password"
-          name="password"
-        >
-          <Input.Password />
-        </Form.Item>
+const App = () => {
+  const navigate = useNavigate();
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Login
-          </Button>
-        </Form.Item>
-      </Form>
-    </Card>
-  </>
-);
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    navigate('/dashboard');
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#f0f2f5' }}>
+      <Card
+        style={{
+          maxWidth: '400px',
+          width: '100%',
+          border: '2px solid black',
+          background: 'grey'
+        }}
+      >
+        <Space
+          style={{
+            fontSize: '40px',
+            color: 'white',
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '20px'
+          }}
+        >
+          Login Page
+        </Space>
+        <Form
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: 'Please input your email!' }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Button type="primary" htmlType="submit">
+              Login
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
+    </div>
+  );
+};
+
 export default App;
