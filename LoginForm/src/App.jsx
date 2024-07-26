@@ -7,7 +7,7 @@ const App = () => (
         maxWidth: "800px",
         marginLeft: "250px",
         border: "2px solid black",
-        background: "grey"
+        background: "black"
       }}>
       <Space
         style={{
