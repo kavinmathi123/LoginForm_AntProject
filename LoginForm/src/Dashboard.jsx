@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, Layout } from 'antd';
-
+import Curd from './Curd';
+import { Footer } from 'antd/es/layout/layout';
 const { Header, Sider, Content } = Layout;
 
 const Dashboard = () => {
@@ -12,12 +13,13 @@ const Dashboard = () => {
 
     return (
         <Layout>
-            <Header style={{ display: 'flex', alignItems: 'center', backgroundColor: 'grey' }}>
+            <Header style={{ display: 'flex', alignItems: 'center', backgroundColor: 'pink', height: "100px" }}>
                 <img src="./public/AkhiraLogo.png" style={{ height: '40px' }} alt="Logo" />
             </Header>
             <Layout>
                 <Sider>
                     <Menu
+                        style={{ height: "150px" }}
                         onClick={handleMenuClick}
                         selectedKeys={[selectKey]}
                         items={[
@@ -26,13 +28,11 @@ const Dashboard = () => {
                         ]}
                     />
                 </Sider>
-                <Content >
+                <Content style={{ height: "150px" }}>
                     {
                         selectKey === '1' &&
                         <div style={{ textAlign: 'center' }}>
-                            <h1>
-                                Welcome to the Dashboard
-                            </h1>
+                            <Curd />
                         </div>
                     }
                     {
@@ -45,6 +45,8 @@ const Dashboard = () => {
                     }
                 </Content>
             </Layout>
+            <Footer style={{ display: 'flex', alignItems: 'center', backgroundColor: 'pink', height: "100px" }}>
+            </Footer>
         </Layout>
     );
 };
