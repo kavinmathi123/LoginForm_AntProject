@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Menu, Layout } from 'antd';
+import { Menu, Layout, Table } from 'antd';
 import Curd from './Curd';
 import { Footer } from 'antd/es/layout/layout';
+import TableCurd from './TableCurd';
 const { Header, Sider, Content } = Layout;
 
 const Dashboard = () => {
@@ -19,7 +20,7 @@ const Dashboard = () => {
             <Layout>
                 <Sider>
                     <Menu
-                        style={{ height: "150px" }}
+                        style={{ height: "400px" }}
                         onClick={handleMenuClick}
                         selectedKeys={[selectKey]}
                         items={[
@@ -28,7 +29,7 @@ const Dashboard = () => {
                         ]}
                     />
                 </Sider>
-                <Content style={{ height: "150px" }}>
+                <Content>
                     {
                         selectKey === '1' &&
                         <div style={{ textAlign: 'center' }}>
@@ -38,14 +39,12 @@ const Dashboard = () => {
                     {
                         selectKey === '2' &&
                         <div style={{ textAlign: 'center' }}>
-                            <h1>
-                                Welcome to the About Page
-                            </h1>
+                            <TableCurd />
                         </div>
                     }
                 </Content>
             </Layout>
-            <Footer style={{ display: 'flex', alignItems: 'center', backgroundColor: 'pink', height: "100px" }}>
+            <Footer style={{ display: 'flex', alignItems: 'center', backgroundColor: 'pink' }}>
             </Footer>
         </Layout>
     );
